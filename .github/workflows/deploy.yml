@@ -1,0 +1,48 @@
+name: Node.js Backend CI/CD
+
+on:
+  push:
+    branches:
+      - main  # Change if you use another branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout repo
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2. Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'  # Change if needed
+
+      # 3. Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # 5. Copy files to EC2
+      - name: Copy files to EC2
+        uses: appleboy/scp-action@v0.1.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_KEY }}
+          source: "."
+          target: "/home/ubuntu/mern-shop-backend"
+
+      # 6. SSH to EC2 and restart backend
+      - name: Restart backend with PM2
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_KEY }}
+          script: |
+            cd /home/ubuntu/mern-shop-backend
+            pm2 stop all || true
+            pm2 start ecosystem.config.cjs
+            pm2 save

@@ -85,15 +85,6 @@ To run only the backend:
 npm run server
 ```
 
-## Build & Deploy
-
-To create a production build for the frontend:
-
-```bash
-cd frontend
-npm run build
-```
-
 ## Seed Database
 
 Use the following commands to seed the database with sample users and products, or destroy all data:

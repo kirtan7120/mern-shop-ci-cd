@@ -61,7 +61,7 @@ app.use("/api/v1/health", healthRoute);
 
 // ----------------- Root Route -----------------
 app.get('/', (req, res) => {
-  res.send('✅ API is running...');
+  res.send('✅ Backend is running...');
 });
 
 // ----------------- Error Handlers -----------------
