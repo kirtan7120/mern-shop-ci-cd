@@ -33,7 +33,11 @@ app.use(compression());
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(helmet()); // adds security headers
+app.use(
+  helmet({
+    contentSecurityPolicy: false, // allow swagger-ui scripts
+  })
+);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Logging
