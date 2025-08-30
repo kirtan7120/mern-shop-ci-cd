@@ -19,7 +19,7 @@ module.exports = {
         EMAIL_USER: "ADD_YOUR_BREVO_LOGIN",
         EMAIL_PASS: "ADD_YOUR_BREVO_PASSWORD",
         EMAIL_FROM: "ADD_YOUR_BREVO_LOGIN",
-        HOST: "http://<your-ec2-public-ip>:5000"
+        HOST: "http://13.233.85.201"
       },
       env_production: {
         NODE_ENV: "production",
@@ -34,7 +34,7 @@ module.exports = {
         EMAIL_USER: "ADD_YOUR_BREVO_LOGIN",
         EMAIL_PASS: "ADD_YOUR_BREVO_PASSWORD",
         EMAIL_FROM: "ADD_YOUR_BREVO_LOGIN",
-        HOST: "http://<your-ec2-public-ip>:5000"
+        HOST: "http://13.233.85.201"
       }
     }
   ]
