@@ -28,10 +28,7 @@ connectDB();
 const app = express();
 
 // ----------------- Middlewares -----------------
-app.use(cors({
-  origin: process.env.CLIENT_URL || '*', // Amplify frontend domain
-  credentials: true,
-}));
+app.use(cors());
 app.use(compression());
 app.use(cookieParser());
 app.use(express.json());
